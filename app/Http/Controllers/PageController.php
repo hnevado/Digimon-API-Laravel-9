@@ -9,15 +9,22 @@ class PageController extends Controller
 {
     
 
-    public function welcome()
+    public function welcome(Request $request)
     {
 
+        $search = $request->search;
 
-        $url="https://digimon-api.vercel.app/api/digimon";
-
+        if (is_null($search))
+        {
+         $url="https://digimon-api.vercel.app/api/digimon";
+        }
+        else
+        {
+         $url="https://digimon-api.vercel.app/api/digimon/name/".$search;
+        }
         //Api return name, img and level
         $digimons=Http::get($url)->json();
-
+        
         return view('welcome', ['digimons' => $digimons]);
 
     }

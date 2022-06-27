@@ -24,14 +24,20 @@
 
     <div class="bg-gray-900 px-20 py-16 mb-8 relative overflow-hidden">
         <h1 class="text-3xl text-white mt-4">DIGIMON</h1>
+        <form class="flex-grow" action="{{ route('welcome') }}" method="GET">
+           <input class="border border-gray-200 py-2 px-4 w-1/2" value="{{ request('search') }}" type="text" name="search" placeholder="Buscar...">
+         </form>
         <img class="absolute -right-20 -top-20 opacity-20" src="{{asset('img/Taichi_Yagami_2020.webp') }}">
      </div>
 
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 h-screen place-items-center"> 
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 place-items-center"> 
+     @if (isset($digimons['ErrorMsg']))
+           <div  class="mb-6 border p-5">El digimon <strong>{{ request('search') }}</strong> no existe en la API.</div>
+     @else
         @foreach ($digimons as $digimon)
 
             <div class="mb-6 border p-5">
-
+                
                 <p><a href="{{route('digimon', $digimon['name'])}}"><img src="{{$digimon['img']}}"></a></p>
                 <p class="text-center"><strong>{{$digimon['name']}}</strong><br/>
                 {{$digimon['level']}}</p>
@@ -39,6 +45,11 @@
             </div>
 
             @endforeach
-        </div>
+       @endif
+
+
+        
+     </div>
+     <p class="px-20 py-16 mb-8"><a href="{{route('welcome')}}">&lt; VOLVER AL LISTADO</a></p>
     </body>
 </html>
