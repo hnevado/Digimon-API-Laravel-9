@@ -23,7 +23,8 @@
     <body class="antialiased">
 
     <div class="bg-gray-900 px-20 py-16 mb-8 relative overflow-hidden">
-        <h1 class="text-3xl text-white mt-4">{{$nombre}}</h1>
+        <p class="mb-4"><a title="Exportar este Digimon a PDF" href="{{route('export', $nombre)}}"><img src="{{asset('img/icono_pdf.png') }}"></a></p>
+        <h1 class="text-3xl text-white mt-4">{{$nombre}} </h1>
         <p class="text-white mb-8"><a href="{{route('welcome')}}">&lt; VOLVER AL LISTADO</a></p>
         <img class="absolute -right-20 -top-20 opacity-20" src="{{asset('img/Taichi_Yagami_2020.webp') }}">
      </div>

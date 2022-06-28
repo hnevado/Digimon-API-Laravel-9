@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use PDF;
 
 class PageController extends Controller
 {
@@ -29,7 +30,7 @@ class PageController extends Controller
 
     }
 
-    function digimon($digimon, $nivel)
+    public function digimon($digimon, $nivel)
     {
 
         $nombre=$digimon;
@@ -42,5 +43,16 @@ class PageController extends Controller
         return view('digimon', ['digimon' => $digimon, 'nombre' => $nombre, 'related' => $related, 'nivel_digimon' => $nivel]);
 
     }
+
+    public function export($digimon)
+    {
+        $url="https://digimon-api.vercel.app/api/digimon/name/".$digimon;
+        $digimons=Http::get($url)->json();
+
+        $pdf = PDF::loadView('download', ['digimons' => $digimons]);
+     
+        return $pdf->download('Digimon_'.$digimon.'.pdf');
+    }
+
 
 }
