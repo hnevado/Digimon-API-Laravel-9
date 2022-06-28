@@ -24,17 +24,36 @@
 
     <div class="bg-gray-900 px-20 py-16 mb-8 relative overflow-hidden">
         <h1 class="text-3xl text-white mt-4">{{$nombre}}</h1>
+        <p class="text-white mb-8"><a href="{{route('welcome')}}">&lt; VOLVER AL LISTADO</a></p>
         <img class="absolute -right-20 -top-20 opacity-20" src="{{asset('img/Taichi_Yagami_2020.webp') }}">
      </div>
 
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 place-items-center""> 
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 place-items-center"> 
         @foreach ($digimon as $info)
-
-            <div class="mb-6 border p-5">
+            <div class="mb-8 border p-5">
 
                 <p><img src="{{$info['img']}}"></p>
                 <p class="text-center"><strong>{{$info['name']}}</strong><br/>
                 {{$info['level']}}</p>
+            
+            </div>
+
+            @endforeach
+        </div>
+
+        <div class="bg-gray-900 px-20 py-16 mb-8 relative overflow-hidden">
+          <h2 class="text-3xl text-white mt-4">Digimons con nivel <strong>{{strtoupper($nivel_digimon)}}</strong></h2>
+         </div>
+
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 place-items-center""> 
+        @foreach ($related as $digimon_relacionado)
+
+            <div class="mb-6 border p-5">
+
+                <p><img src="{{$digimon_relacionado['img']}}"></p>
+                <p class="text-center"><strong>{{$digimon_relacionado['name']}}</strong><br/>
+                {{$digimon_relacionado['level']}}</p>
             
             </div>
 

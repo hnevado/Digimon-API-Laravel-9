@@ -16,7 +16,7 @@ use App\Http\Controllers\PageController;
 Route::controller(PageController::class)->group(function () {
 
     Route::get('/',     'welcome')->name('welcome');
-    Route::get('digimon/{name}', 'digimon')->name('digimon');
+    Route::get('digimon/{name}/{level}/', 'digimon')->name('digimon');
 
 });
 

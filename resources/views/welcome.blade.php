@@ -38,7 +38,7 @@
 
             <div class="mb-6 border p-5">
                 
-                <p><a href="{{route('digimon', $digimon['name'])}}"><img src="{{$digimon['img']}}"></a></p>
+                <p><a href="{{route('digimon', [$digimon['name'], $digimon['level']])}}"><img src="{{$digimon['img']}}"></a></p>
                 <p class="text-center"><strong>{{$digimon['name']}}</strong><br/>
                 {{$digimon['level']}}</p>
             

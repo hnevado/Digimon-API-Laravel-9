@@ -29,16 +29,17 @@ class PageController extends Controller
 
     }
 
-    function digimon($digimon)
+    function digimon($digimon, $nivel)
     {
 
         $nombre=$digimon;
 
         $url="https://digimon-api.vercel.app/api/digimon/name/".$digimon;
-        
         $digimon=Http::get($url)->json();
 
-        return view('digimon', ['digimon' => $digimon, 'nombre' => $nombre]);
+        $related=Http::get("https://digimon-api.vercel.app/api/digimon/level/".$nivel)->json();
+
+        return view('digimon', ['digimon' => $digimon, 'nombre' => $nombre, 'related' => $related, 'nivel_digimon' => $nivel]);
 
     }
 
